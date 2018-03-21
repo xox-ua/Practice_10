@@ -1,23 +1,27 @@
 <resources>
     <string name="app_name">Practice_10</string>
 
-    <string name="btn_login">Log in</string>
+    <string name="btn_cancel">Отмена</string>
+    <string name="btn_cancel2">Нет, так нет</string>
+    <string name="btn_login">Авторизоваться</string>
+    <string name="btn_ok">ОК</string>
     <string name="btn_splash">Go to SplashActivity</string>
-    <string name="content_description">logo</string>
-    <string name="error_login">Enter login</string>
-    <string name="error_pass">Enter password</string>
-    <string name="hint_login">Enter login</string>
-    <string name="hint_pass">Enter password</string>
-    <string name="img">image here</string>
-    <string name="log_out">Log out</string>
-    <string name="save_data">Save login &amp; password</string>
-    <string name="toast">very short password</string>
-    <string name="toast1">successfully clicked 1</string>
-    <string name="toast2">successfully clicked 2</string>
-    <string name="toast3">something wrong</string>
-    <string name="tv_forget">Forget</string>
-    <string name="tv_signup">Sign Up</string>
-    <string name="tv_title">Title</string>
+    <string name="content_description">лого</string>
+    <string name="error_login">Ошибка ввода логина</string>
+    <string name="error_pass">Ошибка ввода пароля</string>
+    <string name="hint_login">Введите логин</string>
+    <string name="hint_name">Введите имя</string>
+    <string name="hint_pass">Введите пароль</string>
+    <string name="hint_surname">Введите фамилию</string>
+    <string name="img">картинка</string>
+    <string name="log_out">Выйти</string>
+    <string name="registration">Регистрация</string>
+    <string name="registration2"><u>Регистрация</u></string>
+    <string name="save_data">Сохранение логина и пароля</string>
+    <string name="toast">пароль должен быть длиннее</string>
+    <string name="toast3">что-то не так</string>
+    <string name="tv_forget">Очистить</string>
+    <string name="tv_signup">Регистрация</string>
     <string name="txt">А у нас тут начинается приложение</string>
 
 </resources>
