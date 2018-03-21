@@ -75,6 +75,7 @@ public class MainActivity extends BaseActivity {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                
                 Toast.makeText(getApplicationContext(), R.string.toast1, Toast.LENGTH_SHORT).show();
             }
         });
@@ -83,7 +84,8 @@ public class MainActivity extends BaseActivity {
         tvForget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), R.string.toast2, Toast.LENGTH_SHORT).show();
+                etLogin.setText(null);
+                etPass.setText(null);
             }
         });
     }
