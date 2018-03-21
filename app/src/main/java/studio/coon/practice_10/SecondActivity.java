@@ -46,6 +46,7 @@ public class SecondActivity extends BaseActivity {
                 editor.putString(APP_PREFERENCES_LOGIN, null);
                 editor.putString(APP_PREFERENCES_PASS, null);
                 editor.apply();
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
