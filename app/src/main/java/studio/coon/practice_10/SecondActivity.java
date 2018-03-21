@@ -1,13 +1,20 @@
 package studio.coon.practice_10;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class SecondActivity extends BaseActivity {
+    @BindView(R.id.btnSplash) Button btnSplash;
     SharedPreferences mSettings;
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_LOGIN = "Login";
@@ -42,6 +49,14 @@ public class SecondActivity extends BaseActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @OnClick(R.id.btnSplash)
+    void submitButton(View view) {
+        if (view.getId() == R.id.btnSplash) {
+            Intent intent = new Intent(SecondActivity.this, SplashActivity.class);
+            startActivity(intent);
         }
     }
 }

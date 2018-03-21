@@ -2,6 +2,7 @@
     <string name="app_name">Practice_10</string>
 
     <string name="btn_login">Log in</string>
+    <string name="btn_splash">Go to SplashActivity</string>
     <string name="content_description">logo</string>
     <string name="error_login">Enter login</string>
     <string name="error_pass">Enter password</string>

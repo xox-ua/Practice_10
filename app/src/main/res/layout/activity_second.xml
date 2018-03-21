@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="studio.coon.practice_10.SecondActivity">
 
+    <Button
+        android:id="@+id/btnSplash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_splash"
+        android:gravity="center"/>
+
 </android.support.constraint.ConstraintLayout>

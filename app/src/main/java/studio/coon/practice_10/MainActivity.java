@@ -35,9 +35,13 @@ public class MainActivity extends BaseActivity {
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
         if(mSettings.contains(APP_PREFERENCES_LOGIN)) {
-            // осуществляем переход
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-            startActivity(intent);
+            String login = mSettings.getString(APP_PREFERENCES_LOGIN, "");
+            if (!"".equals(login)) {
+                // осуществляем переход
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+
         }
 
 
@@ -57,8 +61,8 @@ public class MainActivity extends BaseActivity {
                 } else if (2 >= pass_length) {
                     Toast.makeText(getApplicationContext(), R.string.toast, Toast.LENGTH_SHORT).show();
                 } else {
-//                    etLogin.setError(null);
-//                    etPass.setError(null);
+                    etLogin.setError(null);
+                    etPass.setError(null);
                     onButtonCheckChanged();
                     // осуществляем переход
                     Intent intent = new Intent(MainActivity.this, SecondActivity.class);
@@ -102,14 +106,4 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        String strLogin = etLogin.getText().toString();
-        String strPass = etPass.getText().toString();
-        SharedPreferences.Editor editor = mSettings.edit();
-        editor.putString(APP_PREFERENCES_LOGIN, strLogin);
-        editor.putString(APP_PREFERENCES_PASS, strPass);
-        editor.apply();
-    }
 }
