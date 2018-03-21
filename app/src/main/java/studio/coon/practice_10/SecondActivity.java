@@ -60,4 +60,10 @@ public class SecondActivity extends BaseActivity {
             startActivity(intent);
         }
     }
+
+    //блокирую кнопку назад
+    @Override
+    public void onBackPressed() {
+        // действия при нажатии на кнопку
+    }
 }
