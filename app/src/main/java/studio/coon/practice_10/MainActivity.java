@@ -39,52 +39,9 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         }
-
-        // нажатие кнопки LogIn и обработка полей EditText (пустое, длина пароля меньше 6)
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String temp_login = etLogin.getText().toString();
-                String temp_pass = etPass.getText().toString();
-                int pass_length = etPass.getText().length();
-
-                if (temp_login.matches("")) {
-                    etLogin.requestFocus();
-                    etLogin.setError(getString(R.string.error_login));
-                } else if (temp_pass.matches("")) {
-                    etPass.setError(getString(R.string.error_pass));
-                } else if (2 >= pass_length) {
-                    Toast.makeText(getApplicationContext(), R.string.toast, Toast.LENGTH_SHORT).show();
-                } else {
-                    etLogin.setError(null);
-                    etPass.setError(null);
-                    onButtonCheckChanged();
-                    // осуществляем переход
-                    Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
-
-        // нажатие SignUp
-        tvSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // добавляем свой AlertDialog
-                CustomDialog castomDialog = new CustomDialog(MainActivity.this);
-                castomDialog.show();
-            }
-        });
-
-        // Нажатие Forget
-        tvForget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                etLogin.setText(null);
-                etPass.setText(null);
-            }
-        });
     }
+
+
 
     // проверка и обработка CheckBox
     @OnCheckedChanged({R.id.chkBox})
@@ -98,6 +55,45 @@ public class MainActivity extends BaseActivity {
             SharedPrefsHelper.remove(this, "Login");
             SharedPrefsHelper.remove(this, "Pass");
         }
+    }
+
+    // нажатие кнопки LogIn и обработка полей EditText (пустое, длина пароля меньше 2)
+    @OnClick(R.id.btnLogin)
+    public void onClickLogIn() {
+        String temp_login = etLogin.getText().toString();
+        String temp_pass = etPass.getText().toString();
+        int pass_length = etPass.getText().length();
+
+        if (temp_login.matches("")) {
+            etLogin.requestFocus();
+            etLogin.setError(getString(R.string.error_login));
+        } else if (temp_pass.matches("")) {
+            etPass.setError(getString(R.string.error_pass));
+        } else if (2 >= pass_length) {
+            Toast.makeText(getApplicationContext(), R.string.toast, Toast.LENGTH_SHORT).show();
+        } else {
+            etLogin.setError(null);
+            etPass.setError(null);
+            onButtonCheckChanged();
+            // осуществляем переход
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    // нажатие SignUp
+    @OnClick(R.id.tvSignup)
+    public void onClickSignUp() {
+        // добавляем свой AlertDialog
+        CustomDialog castomDialog = new CustomDialog(MainActivity.this);
+        castomDialog.show();
+    }
+
+    // Нажатие Forget
+    @OnClick(R.id.tvForget)
+    public void onClickForget() {
+        etLogin.setText(null);
+        etPass.setText(null);
     }
 
 }
