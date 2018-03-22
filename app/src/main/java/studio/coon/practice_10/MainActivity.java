@@ -1,11 +1,7 @@
 package studio.coon.practice_10;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,15 +29,15 @@ public class MainActivity extends BaseActivity {
         if(SharedPrefsHelper.contains(this, "Login")) {
             String login = (String) SharedPrefsHelper.get(this, "Login", "");
             String pass = (String) SharedPrefsHelper.get(this, "Pass", "");
+            Log.wtf("main-login", login);
+            Log.wtf("main-pass", pass);
             if (!"".equals(login) && !"".equals(pass)) {
                 // осуществляем переход
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                Intent intent = new Intent(this, SecondActivity.class);
                 startActivity(intent);
             }
         }
     }
-
-
 
     // проверка и обработка CheckBox
     @OnCheckedChanged({R.id.chkBox})
@@ -76,7 +72,7 @@ public class MainActivity extends BaseActivity {
             etPass.setError(null);
             onButtonCheckChanged();
             // осуществляем переход
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            Intent intent = new Intent(this, SecondActivity.class);
             startActivity(intent);
         }
     }
@@ -85,7 +81,7 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.tvSignup)
     public void onClickSignUp() {
         // добавляем свой AlertDialog
-        CustomDialog castomDialog = new CustomDialog(MainActivity.this);
+        CustomDialog castomDialog = new CustomDialog(this);
         castomDialog.show();
     }
 

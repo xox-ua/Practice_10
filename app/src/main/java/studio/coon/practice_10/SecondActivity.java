@@ -15,10 +15,6 @@ import butterknife.OnClick;
 
 public class SecondActivity extends BaseActivity {
     @BindView(R.id.btnSplash) Button btnSplash;
-    SharedPreferences mSettings;
-    public static final String APP_PREFERENCES = "mysettings";
-    public static final String APP_PREFERENCES_LOGIN = "Login";
-    public static final String APP_PREFERENCES_PASS = "Pass";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,8 +27,6 @@ public class SecondActivity extends BaseActivity {
         setContentView(R.layout.activity_second);
         super.onCreate(savedInstanceState);
 
-        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-
     }
 
     @Override
@@ -42,10 +36,8 @@ public class SecondActivity extends BaseActivity {
         // Операции для выбранного пункта меню
         switch (id) {
             case R.id.log_out:
-                SharedPreferences.Editor editor = mSettings.edit();
-                editor.putString(APP_PREFERENCES_LOGIN, null);
-                editor.putString(APP_PREFERENCES_PASS, null);
-                editor.apply();
+                SharedPrefsHelper.remove(this, "Login");
+                SharedPrefsHelper.remove(this, "Pass");
                 finish();
                 return true;
             default:
@@ -56,7 +48,7 @@ public class SecondActivity extends BaseActivity {
     @OnClick(R.id.btnSplash)
     void submitButton(View view) {
         if (view.getId() == R.id.btnSplash) {
-            Intent intent = new Intent(SecondActivity.this, SplashActivity.class);
+            Intent intent = new Intent(this, SplashActivity.class);
             startActivity(intent);
         }
     }
