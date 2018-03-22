@@ -24,7 +24,7 @@
         android:progress="0"
         android:max="100"
         android:indeterminate="false"
-        android:progressDrawable="@drawable/a_progress_bar" />
+        android:progressDrawable="@drawable/yy_progress_bar" />
 
 </FrameLayout>
 

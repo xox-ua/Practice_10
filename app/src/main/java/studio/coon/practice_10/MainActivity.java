@@ -1,9 +1,10 @@
 package studio.coon.practice_10;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -48,6 +49,7 @@ public class MainActivity extends BaseActivity {
             SharedPrefsHelper.put(this, "Login", strLogin);
             SharedPrefsHelper.put(this, "Pass", strPass);
         } else {
+            //SharedPrefsHelper.remove(this, "Welcome");
             SharedPrefsHelper.remove(this, "Login");
             SharedPrefsHelper.remove(this, "Pass");
         }
@@ -90,6 +92,6 @@ public class MainActivity extends BaseActivity {
     public void onClickForget() {
         etLogin.setText(null);
         etPass.setText(null);
-    }
+     }
 
 }

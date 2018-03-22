@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,11 @@ public class SecondActivity extends BaseActivity {
         setContentView(R.layout.activity_second);
         super.onCreate(savedInstanceState);
 
+        if (!SharedPrefsHelper.contains(this, "Welcome")){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            CustomDialogFragment.newInstance(null).show(ft, "CustomDialogFragment");
+        }
+
     }
 
     @Override
@@ -36,6 +42,7 @@ public class SecondActivity extends BaseActivity {
         // Операции для выбранного пункта меню
         switch (id) {
             case R.id.log_out:
+                SharedPrefsHelper.remove(this, "Welcome");
                 SharedPrefsHelper.remove(this, "Login");
                 SharedPrefsHelper.remove(this, "Pass");
                 finish();
@@ -58,4 +65,5 @@ public class SecondActivity extends BaseActivity {
     public void onBackPressed() {
         // действия при нажатии на кнопку
     }
+
 }
