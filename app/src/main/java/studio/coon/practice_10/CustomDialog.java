@@ -23,10 +23,6 @@ class CustomDialog extends Dialog implements android.view.View.OnClickListener {
     @BindView(R.id.etPas) EditText etPass;
     @BindView(R.id.btn_yes) Button btnYes;
     @BindView(R.id.btn_no) Button btnNo;
-    SharedPreferences mSettings;
-    public static final String APP_PREFERENCES = "mysettings";
-    public static final String APP_PREFERENCES_LOGIN = "Login";
-    public static final String APP_PREFERENCES_PASS = "Pass";
     public Activity c;
     public CustomDialog(Activity a) {
         super(a);
@@ -40,8 +36,6 @@ class CustomDialog extends Dialog implements android.view.View.OnClickListener {
         setContentView(R.layout.dialog_custom);
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-
-        mSettings = c.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
         btnYes.setOnClickListener(this);
         btnNo.setOnClickListener(this);
@@ -82,10 +76,8 @@ class CustomDialog extends Dialog implements android.view.View.OnClickListener {
                     etPass.setError(null);
                     String strLogin = etLogin.getText().toString();
                     String strPass = etPass.getText().toString();
-                    SharedPreferences.Editor editor = mSettings.edit();
-                    editor.putString(APP_PREFERENCES_LOGIN, strLogin);
-                    editor.putString(APP_PREFERENCES_PASS, strPass);
-                    editor.apply();
+                    SharedPrefsHelper.put(c, "Login", strLogin);
+                    SharedPrefsHelper.put(c, "Pass", strPass);
                     // осуществляем переход
                     Intent intent = new Intent(c, SecondActivity.class);
                     c.startActivity(intent);

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,29 +24,21 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.tvSignup) TextView tvSignUp;
     @BindView(R.id.tvForget) TextView tvForget;
     @BindView(R.id.chkBox) CheckBox mCheckBox;
-    SharedPreferences mSettings;
-    public static final String APP_PREFERENCES = "mysettings";
-    public static final String APP_PREFERENCES_LOGIN = "Login";
-    public static final String APP_PREFERENCES_PASS = "Pass";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
 
-        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-
-        if(mSettings.contains(APP_PREFERENCES_LOGIN)) {
-            String login = mSettings.getString(APP_PREFERENCES_LOGIN, "");
-            if (!"".equals(login)) {
+        if(SharedPrefsHelper.contains(this, "Login")) {
+            String login = (String) SharedPrefsHelper.get(this, "Login", "");
+            String pass = (String) SharedPrefsHelper.get(this, "Pass", "");
+            if (!"".equals(login) && !"".equals(pass)) {
                 // осуществляем переход
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
             }
-
         }
-
 
         // нажатие кнопки LogIn и обработка полей EditText (пустое, длина пароля меньше 6)
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -99,15 +92,11 @@ public class MainActivity extends BaseActivity {
         if(mCheckBox.isChecked()) {
             String strLogin = etLogin.getText().toString();
             String strPass = etPass.getText().toString();
-            SharedPreferences.Editor editor = mSettings.edit();
-            editor.putString(APP_PREFERENCES_LOGIN, strLogin);
-            editor.putString(APP_PREFERENCES_PASS, strPass);
-            editor.apply();
+            SharedPrefsHelper.put(this, "Login", strLogin);
+            SharedPrefsHelper.put(this, "Pass", strPass);
         } else {
-            SharedPreferences.Editor editor = mSettings.edit();
-            editor.putString(APP_PREFERENCES_LOGIN, null);
-            editor.putString(APP_PREFERENCES_PASS, null);
-            editor.apply();
+            SharedPrefsHelper.remove(this, "Login");
+            SharedPrefsHelper.remove(this, "Pass");
         }
     }
 
